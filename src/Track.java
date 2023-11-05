@@ -1,32 +1,63 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Track {
     private final TrackType type;
-    private int trackDistance;
-    private HashMap<Athlete, Integer> trackRecords;
+    private final ArrayList<Lap> records;
 
     public Track(TrackType type) {
         this.type = type;
-        switch (type) {
-            case GRASS -> trackDistance = 300;
-            case GRAVEL -> trackDistance = 400;
+        this.records = new ArrayList<>();
+    }
+
+    public void addLapTime(Lap lap) {
+        if (lap.getTrack().getType() != this.type) {
+            throw new IllegalArgumentException("Lap track type is not the same as the track type");
         }
-        this.trackRecords = new HashMap<>();
+        this.records.add(lap);
+        lap.getAthlete().addPersonalLap(lap);
     }
 
-    public HashMap<Athlete, Integer> getTrackRecords() {
-        return this.trackRecords;
+    public Athlete getFastestAthlete() {
+        Athlete fastestAthlete = null;
+        int fastestTime = Integer.MAX_VALUE;
+
+        for (Lap lap : this.records) {
+            if (lap.getDuration() < fastestTime) {
+                fastestAthlete = lap.getAthlete();
+            }
+        }
+
+        return fastestAthlete;
     }
 
-    public void setTrackRecords(HashMap<Athlete, Integer> trackRecords) {
-        this.trackRecords = trackRecords;
+    public int getFastestLapTime() {
+        int fastestTime = Integer.MAX_VALUE;
+
+        for (Lap lap : this.records) {
+            if (lap.getDuration() < fastestTime) {
+                fastestTime = lap.getDuration();
+            }
+        }
+
+        return fastestTime;
+    }
+
+    public String getFastestAthleteAndLapTime() {
+        String result = "";
+        Athlete fastestAthlete = this.getFastestAthlete();
+
+        if (fastestAthlete != null) {
+            result = "The fastest athlete is " + fastestAthlete.getName() + " with PR on " + this.type + " of: " + this.getFastestLapTime() + " seconds";
+        }
+
+        return result;
     }
 
     public TrackType getType() {
         return this.type;
     }
 
-    public int getTrackDistance() {
-        return this.trackDistance;
+    public ArrayList<Lap> getRecords() {
+        return this.records;
     }
 }
