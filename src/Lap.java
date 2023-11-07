@@ -1,14 +1,14 @@
 public class Lap {
     private Athlete athlete;
     private Track track;
-    private int duration;
+    private double time;
 
-    public Lap(Athlete athlete, Track track, int duration) {
+    public Lap(Athlete athlete, Track track, double time) {
         this.athlete = athlete;
-        this.duration = duration;
+        this.time = time;
 
         if (track.getType() == TrackType.GRASS) {
-            this.duration -= 5;
+            this.time -= 5;
         }
 
         this.track = track;
@@ -22,16 +22,16 @@ public class Lap {
         this.athlete = athlete;
     }
 
-    public int getSpeed() {
-        return this.track.getType().getDistance() / this.duration;
+    public double getSpeed() {
+        return this.track.getType().getDistance() / this.getTime();
     }
 
-    public int getDuration() {
-        return this.duration;
+    public double getTime() {
+        return this.time;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setTime(int time) {
+        this.time = time;
     }
 
     public Track getTrack() {
