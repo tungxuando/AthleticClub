@@ -7,6 +7,10 @@ public class Lap {
         this.athlete = athlete;
         this.time = time;
 
+        if(this.getTime() < 0) {
+            throw new IllegalArgumentException("Time must be greater than 0");
+        }
+
         if (track.getType() == TrackType.GRASS) {
             this.time -= 5;
         }

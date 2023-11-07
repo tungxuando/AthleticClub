@@ -12,6 +12,13 @@ class AthleteTest {
     }
 
     @Test
+    void testThrowExceptionWithInvalidName() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Athlete("");
+        });
+    }
+
+    @Test
     void getName() {
         assertEquals("Tom", athlete.getName());
     }

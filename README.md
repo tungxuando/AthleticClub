@@ -1,2 +1,0 @@
-# AthleticClub
- NHL Stenden Assignment

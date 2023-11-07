@@ -17,6 +17,11 @@ class LapTest {
     }
 
     @Test
+    void testThrowExceptionWithInvalidTime() {
+        assertThrows(IllegalArgumentException.class, () -> {new Lap(athlete, grass, -1);});
+    }
+
+    @Test
     void getAthlete() {
         assertEquals(athlete, lap.getAthlete());
     }
