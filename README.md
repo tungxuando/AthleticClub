@@ -77,10 +77,10 @@ In this section test data, and the test cases will be provided.
 
 ### Track
 
-|   Object   |          type          |
-|:----------:| :--------------------: |
-|   grass    | TrackType.GRASS_TRACK  |
-|   gravel   | TrackType.GRAVEL_TRACK |
+|   Object   |       type       |
+|:----------:| :--------------: |
+|   grass    | TrackType.GRASS  |
+|   gravel   | TrackType.GRAVEL |
 
 ### Lap
 
